@@ -1,0 +1,17 @@
+{
+  "name": "card-generator",
+  "version": "1.0.0",
+  "description": "A project that allows users to generate cards for people, for all sorts of occasions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cloudflare": "^4.3.0",
+    "dotenv": "^16.5.0",
+    "sharp": "^0.34.2"
+  },
+  "type": "module"
+}
