@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import {Image_Generator} from "./image_generator.js";
 
 let imageGenerator = new Image_Generator();
@@ -13,8 +12,6 @@ let image = document.getElementById('image');
 let downloadButton = document.getElementById('download');
 let formattedLikes = '';
 
-dotenv.config();
-
 generateButton.onclick = () => {
     imageGenerator.generate(createPromptFromInputs(), getAccountID(), getAPIKEY())
 }
@@ -26,5 +23,11 @@ let createPromptFromInputs = () => {
 let getAccountID = () => {
     if (accountID.value !== '') {
         return accountID.value;
-    } else return process.env.ACCOUNT;
+    } else return "none";
+}
+
+let getAPIKEY = () => {
+    if (apiKey.value !== '') {
+        return apiKey.value;
+    } else return "none";
 }

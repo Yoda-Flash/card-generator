@@ -8,7 +8,12 @@ export class Image_Generator {
     }
 
     generate = async (prompt, username, api_key) => {
-        let client = new Cloudflare(api_key)
+        if (username === "none") {
+            username = process.env.ACCOUNT;
+        }
+        if (api_key === "none") {
+            api_key = process.env.API_KEY;
+        }
 
         let response = await fetch(
             `https://api.cloudflare.com/client/v4/accounts/${username}/ai/run/@cf/black-forest-labs/flux-1-schnell/`, {
