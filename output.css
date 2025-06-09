@@ -741,6 +741,9 @@
       opacity: 20%;
     }
   }
+  .static {
+    position: static;
+  }
   .textarea {
     border: var(--border) solid #0000;
     min-height: calc(0.25rem * 20);
