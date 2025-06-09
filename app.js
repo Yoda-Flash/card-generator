@@ -12,6 +12,7 @@ let generateButton = document.getElementById('generate');
 let image = document.getElementById('image');
 let downloadButton = document.getElementById('download');
 let formattedLikes = '';
+
 dotenv.config();
 
 generateButton.onclick = () => {
