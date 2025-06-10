@@ -19,7 +19,10 @@ let likesArray = [];
 let formattedLikes = '';
 
 generateButton.onclick = async () => {
-    image.src = await imageGenerator.generate(createPromptFromInputs(), getAccountID(), getAPIKEY()).catch(err => console.log(err));
+    let imageURL = await imageGenerator.generate(createPromptFromInputs(), getAccountID(), getAPIKEY()).catch(err => console.log(err));
+    const response = await fetch(imageURL);
+    const imageBlob = await response.blob();
+    image.src = URL.createObjectURL(imageBlob);
 }
 
 switchTheme.onclick = () => {

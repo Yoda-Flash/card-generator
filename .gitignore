@@ -3,3 +3,6 @@
 node_modules
 image.jpeg
 secrets.js
+card-generator/node_modules
+card-generator/.next
+image.txt
