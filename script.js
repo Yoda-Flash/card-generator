@@ -55,6 +55,9 @@ let createPromptFromInputs = () => {
 }
 
 let formatLikes = (likes) => {
+    likesArray = [];
+    formattedLikes = '';
+    console.log(likes);
     likesArray = likes.replaceAll(" ", "").split(",");
     for (let i=0; i<likesArray.length; i++) {
         if ((likesArray.length > 1)) {
