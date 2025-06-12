@@ -21,7 +21,7 @@ export class Image_Generator {
         let image = ''
 
         let response = await fetch(
-            `http://localhost:37244/image/${prompt}`, {
+            `https://card-generator.yoda-flash.hackclub.app/image/${prompt}`, {
                 method: "GET"
             }
         ).then(response => response.text().then(result => image = result))
