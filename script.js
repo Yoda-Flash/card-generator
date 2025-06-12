@@ -31,6 +31,15 @@ switchTheme.onclick = () => {
     }
 }
 
+downloadButton.onclick = () => {
+    let link = document.createElement('a');
+    link.setAttribute('href', image.src);
+    link.setAttribute('download', "image.jpeg");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 let createPromptFromInputs = () => {
     let occasion = document.getElementById('occasion').value.toLowerCase();
     let recipientName = document.getElementById('name').value.toLowerCase();
