@@ -44,8 +44,12 @@ let createPromptFromInputs = () => {
     let occasion = document.getElementById('occasion').value.toLowerCase();
     let recipientName = document.getElementById('name').value.toLowerCase();
     let color = document.getElementById('color').value.toLowerCase();
-    let likes = document.getElementById('likes').value.toLowerCase();
-    prompt = `Please generate a ${color} ${occasion} card for ${recipientName}, who likes ${formatLikes(likes)}.`;
+    let likes = document.getElementById('likes').value.toLowerCase().replaceAll(" ", "");
+    if (likes !== '') {
+        prompt = `Please generate a ${color} ${occasion} card for ${recipientName}, who likes ${formatLikes(likes)}.`;
+    } else {
+        prompt = `Please generate a ${color} ${occasion} card for ${recipientName}.`;
+    }
     console.log(prompt);
     return prompt;
 }
