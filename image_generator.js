@@ -1,7 +1,6 @@
 // import dotenv from 'dotenv';
 // import fs from 'fs';
 
-import {getAccount, getApiKey} from "./secrets.js";
 
 export class Image_Generator {
     constructor() {
@@ -9,14 +8,6 @@ export class Image_Generator {
     }
 
     generate = async (prompt, username, api_key) => {
-        if (username === "none") {
-            username = getAccount();
-            // username = process.env.ACCOUNT;
-        }
-        if (api_key === "none") {
-            api_key = getApiKey();
-            // api_key = process.env.API_KEY;
-        }
 
         let image = ''
 
