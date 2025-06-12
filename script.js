@@ -7,16 +7,14 @@ let themesCounter = 0;
 
 let accountID = document.getElementById('account-id').innerText;
 let apiKey = document.getElementById('api-key').innerText;
-let occasion = document.getElementById('occasion').innerText.toLowerCase();
-let recipientName = document.getElementById('name').innerText.toLowerCase();
-let color = document.getElementById('color').innerText.toLowerCase();
-let likes = document.getElementById('likes').innerText.toLowerCase();
 let generateButton = document.getElementById('generate');
 let image = document.getElementById('image');
 let downloadButton = document.getElementById('download');
 
 let likesArray = [];
 let formattedLikes = '';
+
+let prompt = '';
 
 generateButton.onclick = async () => {
     let imageURL = await imageGenerator.generate(createPromptFromInputs(), getAccountID(), getAPIKEY()).catch(err => console.log(err));
@@ -34,10 +32,16 @@ switchTheme.onclick = () => {
 }
 
 let createPromptFromInputs = () => {
-    return `Please generate a ${color} ${occasion} card for ${recipientName}, who likes ${formatLikes()}.`;
+    let occasion = document.getElementById('occasion').value.toLowerCase();
+    let recipientName = document.getElementById('name').value.toLowerCase();
+    let color = document.getElementById('color').value.toLowerCase();
+    let likes = document.getElementById('likes').value.toLowerCase();
+    prompt = `Please generate a ${color} ${occasion} card for ${recipientName}, who likes ${formatLikes(likes)}.`;
+    console.log(prompt);
+    return prompt;
 }
 
-let formatLikes = () => {
+let formatLikes = (likes) => {
     likesArray = likes.replaceAll(" ", "").split(",");
     for (let i=0; i<likesArray.length; i++) {
         if ((likesArray.length > 1)) {

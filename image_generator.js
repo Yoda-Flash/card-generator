@@ -8,72 +8,6 @@ export class Image_Generator {
         // dotenv.config();
     }
 
-    async fetch(request) {
-        const corsHeaders = {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, HEAD, POST, OPTIONS",
-            "Access-Control-Max-Age": "86400"
-        };
-
-        const API_URL = request.url;
-        const PROXY_ENDPOINT = "/corsproxy/";
-
-        async function handleRequest(request, prompt) {
-            let url = new URL(request.url);
-            let apiUrl = url.searchParams.get("apiurl");
-
-            if (apiUrl == null) {
-                apiUrl = API_URL;
-            }
-
-            request = new Request(apiUrl, request);
-            request.headers.set("Origin", new URL(apiUrl).origin);
-            let response = await fetch(request);
-
-            response = new Response(response.body, response);
-
-            response.headers.set("Access-Control-Allow-Origin", url.origin);
-            response.headers.append("Vary", "Origin");
-
-            console.log(response);
-            return response;
-        }
-
-        async function handleOptions(request) {
-            if (
-                request.headers.get("Origin") !== null &&
-                request.headers.get("Access-Control-Request-Method") !== null &&
-                request.headers.get("Access-Control-Request-Headers") !== null
-            ) {
-                return new Response(null, {
-                    headers: {
-                        ...corsHeaders,
-                        "Access-Control-Allow-Headers": request.headers.get("Access-Control-Request-Headers")
-                    }
-                })
-            } else {
-                return new Response(null, {
-                    headers: {
-                        Allow: "GET, HEAD, POST, OPTIONS"
-                    }
-                })
-            }
-        }
-
-        const request_url = new URL(request.url);
-        if (request_url.pathname.startsWith(PROXY_ENDPOINT)) {
-            if (request.method === "OPTIONS") {
-                return handleOptions(request);
-            }
-        } else if (
-            request.method === "GET" ||
-            request.method === "HEAD" ||
-            request.method === "POST"
-        ) {
-            return handleRequest(request);
-        }
-    }
-
     generate = async (prompt, username, api_key) => {
         if (username === "none") {
             username = getAccount();
@@ -84,31 +18,19 @@ export class Image_Generator {
             // api_key = process.env.API_KEY;
         }
 
-        const PROXY_ENDPOINT = "/corsproxy/";
+        let image = ''
 
-        const URL = `https://api.cloudflare.com/client/v4/accounts/${username}/ai/run/@cf/black-forest-labs/flux-1-schnell`;
+        let response = await fetch(
+            `http://localhost:37244/image/${prompt}`, {
+                method: "GET"
+            }
+        ).then(response => response.text().then(result => image = result))
+        .catch(err => console.log(err));
 
-        let href = `${PROXY_ENDPOINT}?apiurl=${URL}`;
+        return image;
 
-        let proxy = async () => {
-            return fetch(window.location.origin + href).then(r => r.json);
-        }
-
-        let proxypreflight = async () => {
-            let response = await fetch(window.location.origin + href, {
-                method: "POST",
-                headers: {
-                    "Authorization": api_key,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "prompt": prompt,
-                    "seed": Math.floor(Math.random() * 10)
-                })
-            })
-            return response.text();
-        }
-
+        // let url = `https://api.cloudflare.com/client/v4/accounts/${username}/ai/run/@cf/black-forest-labs/flux-1-schnell`;
+        //
         // let response = await fetch(
         //     url, {
         //         mode: "cors",
@@ -133,28 +55,28 @@ export class Image_Generator {
         //         })
         //     }
         // ).catch(err => console.log(err));
-
-        let text = await proxypreflight();
-        let image = JSON.parse(text).result.image;
-        // fs.writeFileSync("image.txt", "data:image/jpeg;base64," + image);
+        //
+        // let text = await response.text();
+        // let image = JSON.parse(text).result.image;
+        // // fs.writeFileSync("image.txt", "data:image/jpeg;base64," + image);
         // return "data:image/jpeg;base64," + image;
-        let buffer = Buffer.from(image, 'base64');
+        // let buffer = Buffer.from(image, 'base64');
         //
         // fs.writeFileSync("image.jpeg", buffer);
         //
-        return new Response(buffer, {
-            headers: {
-                'Content-Type': 'image/jpeg',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': "*"
-            },
-        });
+        // return new Response(buffer, {
+        //     headers: {
+        //         'Content-Type': 'image/jpeg',
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Access-Control-Allow-Headers': "*"
+        //     },
+        // });
     }
 }
 
-async function main() {
-    const imageGenerator = new Image_Generator();
-    console.log(await imageGenerator.generate("Please generate a green Father's Day day card for Patrick, who likes money and gold.", getAccount(), getApiKey()).catch(err => console.log(err)));
-}
+// async function main() {
+//     const imageGenerator = new Image_Generator();
+//     await imageGenerator.generate("Please generate a green Father's Day day card for Patrick, who likes money and gold.", getAccount(), getApiKey()).catch(err => console.log(err));
+// }
 
-main().catch(err => console.log(err));
+// main().catch(err => console.log(err));
