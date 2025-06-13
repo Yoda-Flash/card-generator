@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "../node_modules/tailwindcss";
 @plugin "daisyui" {
     themes: light --default, dark --prefersdark, cupcake, synthwave, valentine, aqua, fantasy, night, winter, caramellatte, abyss;
 }

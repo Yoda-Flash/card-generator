@@ -14,6 +14,7 @@ dotenv.config();
 
 
 app.use(cors());
+app.use(express.static('public'));
 
 app.options('*name', (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
