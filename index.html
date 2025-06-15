@@ -16,18 +16,106 @@
         </div>
         <div class="p-8 flex flex-auto h-auto bg-primary-content">
             <div class="w-2/3 p-8 rounded-4xl">
-                <div class="flex flex-auto">
+                <div class="flex flex-auto items-center">
                     <fieldset class="p-4 fieldset flex flex-auto">
-                        <legend class="fieldset-legend">
+                        <legend class="fieldset-legend flex flex-auto items-center">
                             Cloudflare Account ID
+                            <div class="dropdown dropdown-end">
+                                <div tabindex="0" role="button" class="btn btn-xs btn-circle btn-ghost btn-vs text-info">
+                                    <svg
+                                        tabindex="0"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        class="h-3.5 w-3.5 stroke-current">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div tabindex="0" class="card-xs dropdown-content bg-primary-content rounded-box z-1 w-48 shadow-sm">
+                                    <div tabindex="0" class="card-body">
+                                        <p>
+                                            It is recommended to create your own Cloudflare Account,
+                                            so you can generate more images;
+                                            otherwise, the maximum number of images generated daily (roughly 100) will
+                                            be split between all users of this site.
+                                            Follow
+                                            <a class="link" target="_blank" href="https://developers.cloudflare.com/workers-ai/get-started/dashboard/">
+                                                these instructions</a>
+                                            to set up your Cloudflare account and use Workers AI.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </legend>
                         <input type="text" class="input input-primary" placeholder="Optional" id="account-id"/>
                     </fieldset>
                     <fieldset class="p-4 fieldset flex flex-auto">
                         <legend class="fieldset-legend">
                             Cloudflare Workers AI API Key
+                            <div class="dropdown dropdown-end">
+                                <div tabindex="0" role="button" class="btn btn-xs btn-circle btn-ghost btn-vs text-info">
+                                    <svg
+                                        tabindex="0"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        class="h-3.5 w-3.5 stroke-current">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div tabindex="0" class="card-xs dropdown-content bg-primary-content rounded-box z-1 w-48 shadow-sm">
+                                    <div tabindex="0" class="card-body">
+                                        <p>
+                                            Follow
+                                            <a class="link" target="_blank" href="https://developers.cloudflare.com/workers-ai/get-started/dashboard/">
+                                                these instructions</a>                                            </a>
+                                             to get your Workers AI API Key.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </legend>
                         <input type="text" class="input input-primary" placeholder="Optional" id="api-key"/>
+                    </fieldset>
+                    <fieldset class="fieldset p-4 flex flex-auto">
+                        <legend class="fieldset-legend">
+                            Server Mode
+                            <div class="dropdown dropdown-end">
+                                <div tabindex="0" role="button" class="btn btn-xs btn-circle btn-ghost btn-vs text-info">
+                                    <svg
+                                        tabindex="0"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        class="h-3.5 w-3.5 stroke-current">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div tabindex="0" class="card-xs dropdown-content bg-primary-content rounded-box z-1 w-48 shadow-sm">
+                                    <div tabindex="0" class="card-body">
+                                        <p>
+                                            You may only use "Localhost" mode if you use your own API keys.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </legend>
+                        <select class="select select-primary" id="mode">
+                            <option selected>Default</option>
+                            <option>Localhost</option>
+                        </select>
                     </fieldset>
                 </div>
                 <div class="flex flex-auto">
