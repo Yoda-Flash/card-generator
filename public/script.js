@@ -5,8 +5,8 @@ let switchTheme = document.getElementById('switch-theme');
 let themes = ["light", "cupcake", "synthwave", "valentine", "aqua", "fantasy", "night", "winter", "caramellatte", "abyss"];
 let themesCounter = 0;
 
-let accountID = document.getElementById('account-id').innerText;
-let apiKey = document.getElementById('api-key').innerText;
+let accountID = document.getElementById('account-id');
+let apiKey = document.getElementById('api-key');
 let generateButton = document.getElementById('generate');
 let image = document.getElementById('image');
 let downloadButton = document.getElementById('download');
@@ -17,7 +17,7 @@ let formattedLikes = '';
 let prompt = '';
 
 generateButton.onclick = async () => {
-    let imageURL = await imageGenerator.generate(createPromptFromInputs(), getAccountID(), getAPIKEY()).catch(err => console.log(err));
+    let imageURL = await imageGenerator.generate(createPromptFromInputs(), getAccountID(), getAPIKEY(), getServerMode()).catch(err => console.log(err));
     const response = await fetch(imageURL);
     const imageBlob = await response.blob();
     image.src = URL.createObjectURL(imageBlob);
@@ -75,6 +75,7 @@ let formatLikes = (likes) => {
 
 let getAccountID = () => {
     if (accountID.value !== '') {
+        console.log(accountID.value);
         return accountID.value;
     } else return "none";
 }
@@ -84,3 +85,9 @@ let getAPIKEY = () => {
         return apiKey.value;
     } else return "none";
 }
+
+let getServerMode = () => {
+    let mode =  document.getElementById('mode');
+    return mode.value;
+}
+

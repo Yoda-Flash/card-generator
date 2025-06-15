@@ -7,12 +7,21 @@ export class Image_Generator {
         // dotenv.config();
     }
 
-    generate = async (prompt, username, api_key) => {
+    generate = async (prompt, account_id, api_key, server_mode) => {
 
-        let image = ''
+        let image = '';
+        let address = '';
+        if (server_mode === "Localhost") {
+            address = 'http://localhost:37244';
+        } else {
+            address = 'https://card-generator.yoda-flash.hackclub.app'
+        }
 
-        let response = await fetch(
-            `https://card-generator.yoda-flash.hackclub.app/image/${prompt}`, {
+        let url = `${address}/image/${prompt}/${account_id}.${api_key}`;
+
+        console.log(url);
+        await fetch(
+            url, {
                 method: "GET"
             }
         ).then(response => response.text().then(result => image = result))
