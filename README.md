@@ -108,4 +108,4 @@ To do so, run ```node cli.js``` from the repository directory.
 - Frontend: Daisy UI, Tailwind CSS, HTML, JS
 - Model API: Cloudflare Workers AI
   - Model: Flux 1 (Schnell) model by the Black Forest Labs
-- Backend: Node.js, Express.js
+- Backend: Node.js, Express.js, hosted on Hack Club Nest
