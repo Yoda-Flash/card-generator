@@ -79,3 +79,17 @@ You may do so by following the steps below (which assume a local server has been
 *Hosting your own local server is a prerequisite for this. 
 For instructions, please refer to the [Local Hosting](#local-hosting) section.
 
+## CLI Mode
+You may also use this program as a CLI, instead of using the web page to generate cards.
+This allows for more customizability.
+However, it requires more setup, as you must [use dotenv to store your own API keys](#using-api-keys-stored-with-dotenv) and [host a server locally](#local-hosting).
+
+### By Argument
+One option of using the CLI is through inputting your card prompt as an argument when you run the file.
+To do so, run ```node cli.js -p "{your prompt}"``` from the repository directory.
+
+### By Input
+Another option of using the CLI is by running the file first, 
+and then inputting your card prompt by typing it in after the "Insert prompt: " prompt.
+To do so, run ```node cli.js``` from the repository directory.
+
