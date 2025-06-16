@@ -1,5 +1,7 @@
 # Card Generator
-A project that allows users to generate cards for people, for all sorts of occasions. 
+https://card-generator.yoda-flash.hackclub.app/
+
+A project that allows users to generate cards for people, for all sorts of occasions.
 
 ![img.png](img.png)
 
