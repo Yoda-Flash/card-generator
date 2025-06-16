@@ -11,6 +11,13 @@ Through the Cloudflare Workers AI API,
 the Flux 1 (Schnell) model by the Black Forest Labs will generate a card based on the prompt.
 The resulting card will be displayed on the right, and can be downloaded.
 
+## Contents
+1. [General Use](#general-use)
+2. [Additional Functions](#additional-functions)
+3. [Advanced Use](#advanced-use)
+4. [CLI Use](#cli-mode)
+5. [Code Information](#code-information)
+
 ## General Use
 
 ### API Key Information
@@ -50,10 +57,13 @@ If you use your own API keys and are concerned about backend security, you may h
 Please note that you must use your own API keys if you do so.
 You may host locally by following the steps below.
 
+#### Repository Download
 1. Clone this GitHub repository 
     - Run ```git clone https://github.com/Yoda-Flash/card-generator.git``` in your desired directory through the terminal
     - Navigate to the cloned repository's directory with ```cd card-generator/```
 2. Install all required dependencies with ```npm install```
+
+#### Run Server
 3. Run an Express.js Server by running ```node server.js``` within the repository directory
     - If ```Server running``` shows up in the terminal, then it means the server is up and running
     - You may navigate to http://localhost:37244 to view the server page
@@ -79,10 +89,11 @@ You may do so by following the steps below (which assume a local server has been
 *Hosting your own local server is a prerequisite for this. 
 For instructions, please refer to the [Local Hosting](#local-hosting) section.
 
-## CLI Mode
-You may also use this program as a CLI, instead of using the web page to generate cards.
-This allows for more customizability.
-However, it requires more setup, as you must [use dotenv to store your own API keys](#using-api-keys-stored-with-dotenv) and [host a server locally](#local-hosting).
+## CLI Use
+You may also use this program as a Command-Line Interface (CLI), instead of using the web page to generate cards.
+This allows for more customization of the prompt.
+However, it requires more setup, as you must [use dotenv to store your own API keys](#using-api-keys-stored-with-dotenv)
+and [download the repository](#repository-download).
 
 ### By Argument
 One option of using the CLI is through inputting your card prompt as an argument when you run the file.
@@ -93,3 +104,8 @@ Another option of using the CLI is by running the file first,
 and then inputting your card prompt by typing it in after the "Insert prompt: " prompt.
 To do so, run ```node cli.js``` from the repository directory.
 
+## Code Information
+- Frontend: Daisy UI, Tailwind CSS, HTML, JS
+- Model API: Cloudflare Workers AI
+  - Model: Flux 1 (Schnell) model by the Black Forest Labs
+- Backend: Node.js, Express.js
